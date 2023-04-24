@@ -1,0 +1,5 @@
+Django>=4.2,<5.0
+psycopg2
+inertia-django
+django-vite-plugin
+django-js-routes

@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "LSP": {
+     "LSP-pyright": {
+        "settings": {
+          //
+        }
+      }
+    }
+  },
+  "venvPath": ".",
+  "venv": "env"
+}

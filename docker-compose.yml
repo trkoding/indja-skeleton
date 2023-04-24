@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  pgsql:
+    image: postgres:15
+    volumes:
+      - 'goblin-pgsql:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
+    environment:
+      PGPASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  goblin:
+    build: ./runtimes
+    image: 'goblin-1.0'
+    command: 'python manage.py runserver 0.0.0.0:80'
+    volumes:
+      - '.:/code'
+    ports:
+      - '80:80'
+      - '5173:5173'
+    environment:
+      POSTGRES_NAME: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - pgsql
+    restart: always
+
+volumes:
+  goblin-pgsql:
+    driver: local
